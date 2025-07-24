@@ -104,8 +104,25 @@
 .card-animate {
   animation: move-top-right 0.7s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
   z-index: 20;
+  pointer-events: none;
+  // Standardwerte für Desktop
+  --move-scale1: 1.2;
+  --move-x1: 60px;
+  --move-y1: -60px;
+  --move-rotate1: -10deg;
+  --move-scale2: 1.1;
+  --move-x2: 140px;
+  --move-y2: -180px;
+  --move-rotate2: -10deg;
   @include respond-to('mobile') {
-    animation: move-top-right-mobile 0.7s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
+    --move-scale1: 1.08;
+    --move-x1: 0px;
+    --move-y1: -24px;
+    --move-rotate1: -8deg;
+    --move-scale2: 1.04;
+    --move-x2: 0px;
+    --move-y2: -48px;
+    --move-rotate2: -8deg;
   }
 }
 
@@ -115,25 +132,11 @@
     opacity: 1;
   }
   60% {
-    transform: scale(1.2) translate(60px, -60px) rotate(-10deg);
+    transform: scale(var(--move-scale1)) translate(var(--move-x1), var(--move-y1)) rotate(var(--move-rotate1));
     opacity: 0.95;
   }
   100% {
-    transform: scale(1.1) translate(140px, -180px) rotate(-10deg);
-    opacity: 1;
-  }
-}
-@keyframes move-top-right-mobile {
-  0% {
-    transform: scale(1) translate(0, 0) rotate(0deg);
-    opacity: 1;
-  }
-  60% {
-    transform: scale(1.08) translate(0px, -24px) rotate(-8deg);
-    opacity: 0.95;
-  }
-  100% {
-    transform: scale(1.04) translate(0px, -48px) rotate(-8deg);
+    transform: scale(var(--move-scale2)) translate(var(--move-x2), var(--move-y2)) rotate(var(--move-rotate2));
     opacity: 1;
   }
 }
