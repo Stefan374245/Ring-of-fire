@@ -1,0 +1,70 @@
+<app-player
+  *ngFor="let player of game.players; let i = index"
+  [name]="player"
+  [playerActive]="i === game.currentPlayer"
+  class="player-position player-offset-{{i}}"
+></app-player>
+
+
+<div class="game-playground">
+  <div class="card-stack">
+    <ng-container
+      *ngFor="
+        let card of getVisibleStack();
+        let i = index;
+        trackBy: trackByCard
+      "
+    >
+      <img
+        [src]="'/assets/img/cards/card_cover.png'"
+        alt=""
+        [class]="
+          'card-offset-' +
+          i +
+          (hoveredCard === i && i === getVisibleStack().length - 1
+            ? ' card-hover'
+            : '')
+        "
+        (mouseenter)="onCardHover(i)"
+        (mouseleave)="hoveredCard = null"
+        (click)="i === getVisibleStack().length - 1 ? takeCard() : null"
+      />
+    </ng-container>
+
+    <img
+      *ngIf="isTopCardAnimating && animatingCard"
+      [src]="getCardImage(animatingCard)"
+      alt="Animierende Karte"
+      class="card-offset-4 card-animate"
+      (animationend)="onTopCardAnimationEnd()"
+    />
+
+    <div class="last-played-card" *ngIf="game.playedCards.length > 0">
+      <img
+        [src]="getCardImage(game.playedCards[game.playedCards.length - 1])"
+        alt="Letzte abgelegte Karte"
+        class="played-card-img"
+      />
+    </div>
+
+<div class="played-cards" *ngIf="game.playedCards.length > 1">
+  <ng-container *ngIf="getPlayedCardStacks().length > 0">
+    <ng-container *ngFor="let card of getPlayedCardStacks()[getPlayedCardStacks().length - 1]; let j = index">
+      <img
+        [src]="getCardImage(card)"
+        alt="Karte auf dem Tisch"
+        class="played-card-img card-offset-{{ j }}"
+      />
+    </ng-container>
+  </ng-container>
+</div>
+  </div>
+</div>
+
+
+<button (click)="openDialog()" mat-fab color="primary" class="btn-add" aria-label="add player">
+  <mat-icon>add</mat-icon>
+</button>
+
+
+<app-game-info [card]="game.currentCard || game.playedCards[game.playedCards.length - 1]"></app-game-info>

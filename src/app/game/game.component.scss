@@ -1,0 +1,106 @@
+.last-played-card {
+  position: absolute;
+  top: -270px;
+  right: -160px;
+  z-index: 30;
+  transform: scale(1.1) rotate(-8deg);
+  width: 140px;
+  height: auto;
+  pointer-events: none;
+}
+
+.played-cards {
+  display: flex;
+  gap: 8px;
+  margin-top: 32px;
+  justify-content: center;
+  position: absolute;
+  top:-40px;
+  right: 240px;
+}
+
+.played-card-img {
+  width: 80px;
+  height: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  background: #fff;
+}
+@import "../../mixin.scss";
+
+.game-playground {
+  @include displayFlex(column, center, center, 16px);
+  @include imgResponsive(100vw, 100vh, contain);
+  max-width: 100%;
+  background-image: url("/assets/img/board.jpg");
+}
+
+.card-stack {
+  position: relative;
+  height: 200px;
+
+  img {
+    position: absolute;
+    width: 160px;
+    transition: transform 0.2s ease-in-out;
+
+    &.card-hover {
+      cursor: pointer;
+      transform: scale(1.15) translate(20px, 20px);
+      z-index: 10;
+    }
+  }
+
+  @for $i from 0 through 4 {
+    .card-offset-#{$i} {
+      left: $i * 16px;
+      top: $i * 16px;
+    }
+  }
+}
+@for $s from 0 through 9 {
+  .played-stack-#{$s} {
+    position: absolute;
+    top: $s * 30px; // Abstand zwischen den Stapeln
+    left: 0;
+  }
+}
+
+.card-animate {
+  animation: move-top-right 0.7s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
+  z-index: 20;
+}
+
+@keyframes move-top-right {
+  0% {
+    transform: scale(1) translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.2) translate(0px, -60px) rotate(-10deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.1) translate(0px, -120px) rotate(-10deg);
+    opacity: 1;
+  }
+}
+
+.player-position {
+  position: absolute;
+  top: 24px;
+  left: 0;
+}
+@for $i from 0 through 7 {
+  .player-offset-#{$i} {
+    top: 24px + 80px * $i;
+  }
+}
+
+.btn-add {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

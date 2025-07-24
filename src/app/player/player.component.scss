@@ -1,0 +1,28 @@
+@import "../../mixin.scss";
+
+.player {
+  @include displayFlex(row, flex-start, center);
+  width: 250px;
+  background-color: rgba(133, 82, 41, 0.616);
+  border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    transition: background 0.2s, width 0.2s;
+
+    &.inactive {
+    background-color: rgba(133, 82, 41, 0.582);
+    width: 180px;
+     img {
+      width: 40px !important
+    }
+  }
+
+  span {
+    font-size: 32px;
+    font-weight: 700;
+    margin-left: 16px;
+  }
+  img {
+   @include imgResponsive(64px,auto,cover);
+    border-radius: 100%;
+  }
+}

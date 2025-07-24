@@ -1,0 +1,14 @@
+<mat-card class="game-info-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Game Info</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="title; else noCard">
+      <h3>Rule for this card: {{ title }}</h3>
+      <p>{{ description }}</p>
+    </ng-container>
+    <ng-template #noCard>
+      <h3>Please take a card</h3>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

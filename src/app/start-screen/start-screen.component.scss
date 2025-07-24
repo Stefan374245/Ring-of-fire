@@ -1,0 +1,48 @@
+@import '../../mixin.scss';
+
+$background-color: #404040;
+$head-line-color: #a00018;
+$font-color: #222;
+
+@mixin displayFlex($direction: row, $justify: center, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+.start-screen {
+  background-color: $background-color;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  @include displayFlex(row, center, center, 0);
+
+  > img {
+    height: 100vh;
+    object-fit: contain;
+    @include imgResponsive(100%, auto, contain);
+  }
+}
+
+.start-label-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 10%;
+  height: auto;
+  @include displayFlex(row, center, flex-end, 0);
+
+  > img {
+    
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+    @include imgResponsive(350px, auto, contain);
+    &:hover {
+      cursor: pointer;
+      filter:   brightness(1.2) drop-shadow(0 0 10px $background-color);
+                transform: scale(1.05);
+    }
+  }
+}
