@@ -7,6 +7,7 @@
   border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
     transition: background 0.2s, width 0.2s;
+  
 
     &.inactive {
     background-color: rgba(133, 82, 41, 0.582);
@@ -20,6 +21,7 @@
     font-size: 32px;
     font-weight: 700;
     margin-left: 16px;
+      color: wheat;
   }
   img {
    @include imgResponsive(64px,auto,cover);

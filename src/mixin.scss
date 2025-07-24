@@ -40,3 +40,15 @@
 @mixin color($color: wheat) {
   color: $color;
 }
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: 599px) { @content; }
+  }
+  @else if $breakpoint == 'tablet' {
+    @media (min-width: 600px) and (max-width: 1023px) { @content; }
+  }
+  @else if $breakpoint == 'desktop' {
+    @media (min-width: 1024px) { @content; }
+  }
+}
