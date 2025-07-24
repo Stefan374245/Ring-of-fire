@@ -76,7 +76,7 @@ export class GameComponent implements OnInit {
   // Hilfsfunktion, um das Bild für eine Karte zu bekommen
   getCardImage(card: string): string {
     // Beispiel: 'spade_1' -> '/assets/img/cards/spade_1.png'
-    return `/assets/img/cards/${card}.png`;
+    return `assets/img/cards/${card}.png`;
   }
 
   trackByCard(index: number, card: string) {
